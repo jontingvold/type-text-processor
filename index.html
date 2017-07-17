@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Untitled</title>
+
+<link rel="stylesheet" href="themes/default/style.css">
+</head>
+<body id="edit" contenteditable="true" >
+
+<div id="container"><p><br></p></div>
+
+</body>
+<script>
+const main = require('./main-renderer.js')
+main.setup(document, document.getElementById("edit"))
+
+function selectRange (startNode, startOffset, endNode, endOffset) {
+    selection = window.getSelection()
+    selection.removeAllRanges()
+    var range = document.createRange()
+    range.setStart(startNode, startOffset)
+    range.setEnd(endNode, endOffset)
+    selection.addRange(range)
+}
+
+// Set curor at first element
+node = document.getElementById("container").firstChild
+offset = 0
+selectRange(node, offset, node, offset)
+</script>
+</html>

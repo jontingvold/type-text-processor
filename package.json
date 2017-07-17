@@ -1,0 +1,33 @@
+{
+	"name": "Type",
+	"description": "A beautiful text processor",
+	"version": "0.1.1",
+	"author": "Jon Tingvold <jon.tingvold@gmail.com>",
+	"contributors": [],
+	"private": true,
+	"main": "main.js",
+	"scripts": {
+		"start": "electron .",
+		"pack": "electron-builder --dir",
+		"dist": "electron-builder"
+	},
+	"devDependencies": {
+		"electron": "^1.6.11",
+		"electron-builder": "^19.16.0"
+	},
+	"dependencies": {
+		"glob": "^7.1.2"
+	},
+	"build": {
+		"appId": "no.jontingvold.type",
+		"productName": "Type",
+		"fileAssociations": [
+			{
+				"ext": "type",
+				"name": "Type document",
+				"description": "The word processor Type's document format.",
+				"role": "editor"
+			}
+		]
+	}
+}
