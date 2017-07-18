@@ -11,6 +11,12 @@ const os = require('os')
 const path = require('path')
 const shell = electron.shell
 
+function getNameFromPath(filepath) {
+    filename = filepath.substring(filepath.lastIndexOf("/") + 1)
+    filename = filename.substring(0, filename.lastIndexOf("."))
+    return filename
+}
+
 const template = [
 {
     label: 'File',
@@ -65,9 +71,11 @@ const template = [
             label: 'Export to PDF',
             accelerator: 'CmdOrCtrl+e',
             click: function() {
-                // TODO Filename
-                const pdfPath = path.join(os.tmpdir(), 'print.pdf')
                 const win = BrowserWindow.getFocusedWindow()
+                filepath = main.getFilepath(win.id)
+                filenameWithoutExtension = getNameFromPath(filepath)
+                printFileName = filenameWithoutExtension + ".pdf"
+                const pdfPath = path.join(os.tmpdir(), printFileName)
                 // Use default printing options
                 win.webContents.printToPDF({}, function (error, data) {
                   if (error) throw error

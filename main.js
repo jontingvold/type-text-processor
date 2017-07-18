@@ -20,6 +20,10 @@ exports.isFileNew = (winID) => {
     return isFileNew
 }
 
+exports.getFilepath = (winID) => {
+    return filepathForWindows[winID]
+}
+
 exports.save_as_file = () => {
     // See: https://electron.atom.io/docs/api/dialog/
     const win = BrowserWindow.getFocusedWindow()

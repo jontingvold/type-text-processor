@@ -4,6 +4,12 @@ const fs = require('fs')
 var thisDocument = null
 var filepath = ""
 
+function getNameFromPath(filepath) {
+    filename = filepath.substring(filepath.lastIndexOf("/") + 1)
+    filename = filename.substring(0, filename.lastIndexOf("."))
+    return filename
+}
+
 ipc.on('set-filepath', function (event, new_filepath) {
     if(filepath != new_filepath) {
         filepath = new_filepath
@@ -13,8 +19,7 @@ ipc.on('set-filepath', function (event, new_filepath) {
         if(filepath == "") {
             thisDocument.title = "Untitled"
         } else {
-            filename = filepath.substring(filepath.lastIndexOf("/") + 1);
-            filename = filename.substring(0, filename.lastIndexOf("."));
+            filename = getNameFromPath(filepath)
             thisDocument.title = filename
         }
     } 
