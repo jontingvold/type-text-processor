@@ -48,7 +48,8 @@ exports.createWindow = (filepath) => {
     // Create the browser window.
     const win = new BrowserWindow({
         show: false, // Show when everything loaded
-        width: 800, 
+        //width: 800,
+        width: 1200,
         height: 1131, // A4 ratio if sceen high enough (1131=800*sqrt(2)) 
         minWidth: 300,
         minHeight: 400,
@@ -87,7 +88,7 @@ exports.createWindow = (filepath) => {
         win.show()
         
         // Open the DevTools.
-        //win.webContents.openDevTools()
+        win.webContents.openDevTools()
     })
     
     // Emitted when the window have pressed close.

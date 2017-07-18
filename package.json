@@ -16,7 +16,8 @@
 		"electron-builder": "^19.16.0"
 	},
 	"dependencies": {
-		"glob": "^7.1.2"
+		"glob": "^7.1.2",
+		"trix": "^0.10.2"
 	},
 	"build": {
 		"appId": "no.jontingvold.type",

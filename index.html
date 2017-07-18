@@ -5,28 +5,16 @@
 <title>Untitled</title>
 
 <link rel="stylesheet" href="themes/default/style.css">
+<link rel="stylesheet" href="assets/trix.css">
+<script src="node_modules/trix/dist/trix-core.js"></script>
 </head>
-<body id="edit" contenteditable="true" >
+<body>
 
-<div id="container"><p><br></p></div>
+<trix-editor class="trix-content"></trix-editor>
 
 </body>
 <script>
 const main = require('./main-renderer.js')
-main.setup(document, document.getElementById("edit"))
-
-function selectRange (startNode, startOffset, endNode, endOffset) {
-    selection = window.getSelection()
-    selection.removeAllRanges()
-    var range = document.createRange()
-    range.setStart(startNode, startOffset)
-    range.setEnd(endNode, endOffset)
-    selection.addRange(range)
-}
-
-// Set curor at first element
-node = document.getElementById("container").firstChild
-offset = 0
-selectRange(node, offset, node, offset)
+main.setup(document, document.querySelector("trix-editor"))
 </script>
 </html>

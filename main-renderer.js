@@ -2,6 +2,7 @@ const ipc = require('electron').ipcRenderer
 const fs = require('fs')
 
 var thisDocument = null
+var trixEditor = null
 var filepath = ""
 
 function getNameFromPath(filepath) {
@@ -41,12 +42,12 @@ function load_file() {
       }
       
       // If success
-      document.getElementById("container").innerHTML = data
+      trixEditor.editor.loadJSON(JSON.parse(data))
     });
 }
 
 function save_file() {
-    data = document.getElementById("container").innerHTML
+    data = JSON.stringify(trixEditor.editor)
     
     fs.writeFile(filepath, data, function(err) {
        if(err) {
@@ -58,10 +59,13 @@ function save_file() {
 }
 
 // Make available to global scope
-exports.setup = function(doc, editDOMelement) {
+exports.setup = function(doc, aTrixEditor) {
     thisDocument = doc
+    trixEditor = aTrixEditor
     
-    editDOMelement.addEventListener('input', function() {
+    trixEditor.editor.setSelectedRange([0, 0])
+    
+    trixEditor.addEventListener('trix-change', function() {
     	ipc.send('file-changed')
     })
 }
