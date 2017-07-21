@@ -1,7 +1,7 @@
 {
 	"name": "Type",
-	"description": "A beautiful text processor",
-	"version": "0.1.1",
+	"description": "A beautiful word processor",
+	"version": "0.1.2",
 	"author": "Jon Tingvold <jon.tingvold@gmail.com>",
 	"contributors": [],
 	"private": true,
@@ -22,11 +22,14 @@
 	"build": {
 		"appId": "no.jontingvold.type",
 		"productName": "Type",
+		"nsis": {
+			"perMachine": true
+		},
 		"fileAssociations": [
 			{
 				"ext": "type",
-				"name": "Type document",
-				"description": "The word processor Type's document format.",
+				"name": "Type",
+				"description": "Type-document",
 				"role": "editor"
 			}
 		]

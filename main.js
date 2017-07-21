@@ -43,7 +43,7 @@ exports.save_as_file = () => {
 loadMainProcesses()
 
 exports.createWindow = (filepath) => {
-    // Debug: dialog.showErrorBox("Tries to open filepath:", filepath)
+    //dialog.showErrorBox("Tries to open filepath:", process.argv[2])
     
     // Create the browser window.
     const win = new BrowserWindow({
@@ -159,6 +159,9 @@ ipc.on('file-saved', () => {
 // Some APIs can only be used after this event occurs.
 app.on('ready', () => {
     isReady = true
+    if(process.argv.length > 1 && process.argv[1] != ".") {
+        openfileOnStartup = process.argv[1]
+    }
     exports.createWindow(openfileOnStartup)
 })
 
