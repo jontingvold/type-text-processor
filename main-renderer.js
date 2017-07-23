@@ -1,12 +1,13 @@
 const ipc = require('electron').ipcRenderer
 const fs = require('fs')
+const path = require('path')
 
 var thisDocument = null
 var trixElement = null
 var filepath = ""
 
 function getNameFromPath(filepath) {
-    filename = filepath.substring(filepath.lastIndexOf("/") + 1)
+    filename = path.basename(filepath)
     filename = filename.substring(0, filename.lastIndexOf("."))
     return filename
 }

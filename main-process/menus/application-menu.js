@@ -12,7 +12,7 @@ const path = require('path')
 const shell = electron.shell
 
 function getNameFromPath(filepath) {
-    filename = filepath.substring(filepath.lastIndexOf("/") + 1)
+    filename = path.basename(filepath)
     filename = filename.substring(0, filename.lastIndexOf("."))
     return filename
 }

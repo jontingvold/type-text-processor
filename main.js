@@ -25,6 +25,12 @@ exports.getFilepath = (winID) => {
     return filepathForWindows[winID]
 }
 
+function getNameFromPath(filepath) {
+    filename = path.basename(filepath)
+    filename = filename.substring(0, filename.lastIndexOf("."))
+    return filename
+}
+
 exports.save_as_file = () => {
     // See: https://electron.atom.io/docs/api/dialog/
     const win = BrowserWindow.getFocusedWindow()
@@ -104,12 +110,18 @@ exports.createWindow = (filepath) => {
     win.on('close', (event) => {
         if(unsavedWindows[win.id] == true) {
             
+            if(filepathForWindows[win.id] == "") {
+                filename = "Untitled"
+            } else {
+                filename = getNameFromPath(filepathForWindows[win.id])
+            }
+            
             buttonClickedIndex = dialog.showMessageBox(win, {
                 "type": "question",
                 "buttons": ["Save", "Cancel", "Don't save"],
                 "defaultId": 0,
                 "cancelId": 1,
-                "message": "Do you want to save the changes you made in the document?",
+                "message": "Do you want to save '"+filename+"'?",
                 "detail": "Your changes will be lost if you don't save them."
             })
             
