@@ -2,6 +2,11 @@
 TODO
 ====
 
+Bugs
+----
+
+[ ] Links not working in shortcut mode.
+
 Electron funksjoner
 -------------------
 
@@ -23,7 +28,7 @@ Filehandling
 Type
 ----
 
-[ ] Skikkelig dokumentikon
+[ ] Skikkelig dokumentikon, gjerne med kul tekst som "Here are for the crazy ones"
 [ ] Export to PDF uten å få med cursor
 [ ] Print
 
@@ -33,3 +38,13 @@ HTML
 [ ] Validere HTML som skal åpnes (og sikre at man ikke kan skrive inn <script></script> eller <a href="javascript:.."></a>)
 [ ] Paste as plain/text
 [ ] Basic formatting as bold and italic
+
+Research
+--------
+
+[ ] Look at Quill and Draft WYSIWYG editor. https://quilljs.com/ and https://draftjs.org/
+[ ] Use https://khan.github.io/KaTeX/ for Math
+
+Trix
+---
+[ ] Auto-linking with https://gist.github.com/javan/7b0c99f43e67080c2380e8d30707f773 

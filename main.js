@@ -34,7 +34,6 @@ exports.save_as_file = () => {
     })
     
     if(filepath) {
-        const win = BrowserWindow.getFocusedWindow()
         win.webContents.send('set-filepath', filepath)
         win.webContents.send('save')
     }
@@ -88,7 +87,7 @@ exports.createWindow = (filepath) => {
         win.show()
         
         // Open the DevTools.
-        win.webContents.openDevTools()
+        // win.webContents.openDevTools()
     })
     
     // Emitted when the window have pressed close.
