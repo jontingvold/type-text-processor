@@ -73,7 +73,11 @@ const template = [
             click: function() {
                 const win = BrowserWindow.getFocusedWindow()
                 filepath = main.getFilepath(win.id)
-                filenameWithoutExtension = getNameFromPath(filepath)
+                if(filepath == "") {
+                    filenameWithoutExtension = "Untitled"
+                } else {
+                    filenameWithoutExtension = getNameFromPath(filepath)
+                }
                 printFileName = filenameWithoutExtension + ".pdf"
                 const pdfPath = path.join(os.tmpdir(), printFileName)
                 // Use default printing options
