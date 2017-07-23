@@ -6,10 +6,13 @@ Bugs
 ----
 
 [ ] Links not working in shortcut mode.
+[ ] Webpage clipboard: Dobbelt paragraf mellomrom
+[ ] Webpage clipboard: Mulig å kopiere inn bilder hvis man kopierer tekst fra en nettside.
 
 Electron funksjoner
 -------------------
 
+[ ] Save window position med https://www.npmjs.com/package/electron-window-state
 [ ] Få tabs til å fungere (Antagelig bug i Electron)
 
 Filehandling
@@ -31,6 +34,7 @@ Type
 [ ] Skikkelig dokumentikon, gjerne med kul tekst som "Here are for the crazy ones"
 [ ] Export to PDF uten å få med cursor
 [ ] Print
+[ ] QuickView support, se https://aleksandrov.ws/2014/02/25/osx-quick-look-plugin-development/
 
 HTML
 ----

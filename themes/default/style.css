@@ -13,8 +13,6 @@ body {
     outline:0px;
 }
 
-kicker {font-weight:bold;}
-
 .container > *:first-child {margin-top:0;}
 
 /* Subsection headline */ h1 {

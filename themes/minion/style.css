@@ -1,0 +1,121 @@
+body {
+	background: #fff;
+    margin:10% 15%;
+}
+
+#container {
+    margin:0 auto;
+    max-width:700px;
+    width:100%;
+    min-height:calc(100vh - 140px - 20%);
+    outline:0px;
+}
+
+
+/* FONTS */
+@font-face{font-family:'Minion Pro';font-weight:400;src:url("fonts/Minion Pro Regular.woff2");}
+@font-face{font-family:'Minion Pro';font-weight:400;font-style:italic;src:url("fonts/Minion Pro Regular Italic.woff2");}
+@font-face{font-family:'Minion Pro';font-weight:700;src:url("fonts/Minion Pro Semibold.woff2");}
+@font-face{font-family:'Minion Pro';font-weight:700;font-style:italic;src:url("fonts/Minion Pro Semibold Italic.woff2");}
+
+/* Color */
+h6, a {
+    color:#d00; 
+}
+
+body {
+    font-family: "Minion Pro", "Times", serif;
+    font-kerning: normal;
+    line-height:1.4;
+    font-variant-numeric: oldstyle-nums proportional-nums;
+}
+
+/* Sans serif */
+h1, h2, big, small {
+    font-family:-apple-system, BlinkMacSystemFont, Roboto, 'Droid Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-feature-settings: "kern, onum";
+}
+@media (max-width: 500px) {
+    body {font-size:18px;}
+}
+@media(min-width: 500px) {
+    body, li {font-size:18px;}
+}
+figcaption {}
+
+/* Serif */
+
+body {
+    font-family: "Minion Pro", "Times", serif;
+    font-variant-numeric: oldstyle-nums proportional-nums;
+}
+
+/* Monospace */
+pre, code {
+    font-family: Courier, "Courier New", monospace;
+}
+
+/* Typography color, weight and style */
+@supports (hyphens: auto) or 
+    (-webkit-hyphens: auto) or
+    (-moz-hyphens: auto) or
+    (-ms-hyphens: auto) {
+	div {
+        text-align:justify; /* Needs lang attribute on parent element to work. */
+        hyphens: auto;
+        -webkit-hyphens: auto; /* Only Safari, not Chrome. */
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+    }
+}
+
+@media (min-width: 600px), print {
+    div {
+        text-align:justify; /* Needs lang attribute on parent element to work. */
+    }
+}
+
+ul, ol {list-style-position: outside;padding-left:1.5em;}
+ul ul, ol ol, ul ol, ol ul {list-style-position: outside;padding-left:1.5em;}
+
+.container > *:first-child {margin-top:0;}
+
+/* Subsection headline */ h1 {
+    font-weight:500;
+    font-size:1.5em;
+    margin-top:1em;margin-bottom:1em;
+}
+/* Paragraph headline */ h2 {
+    font-weight:500;
+    font-size:1em;
+    margin-top:1em;margin-bottom:0em;
+}
+
+
+
+big {display:block;font-size:1.5em;}
+small {display:block;font-size:0.8em;}
+
+/* Inline elements */
+
+smallcaps {font-variant: small-caps;}
+allsmallcaps {font-variant: all-small-caps;}
+
+
+
+@media print {
+	body, #edit {margin:0;}
+	
+    @page {
+        /*3 and 3.5 cm on A4*/
+        margin:14% 17%;
+        padding:0;
+        
+        orphans: 2;
+        widows: 2;
+    }
+
+	body {
+		font-size:11pt;
+	}
+}

@@ -4,17 +4,28 @@
 <meta charset="utf-8">
 <title>Untitled</title>
 
-<link rel="stylesheet" href="themes/default/style.css">
-<link rel="stylesheet" href="assets/trix.css">
+<link rel="stylesheet" href="themes/minion/style.css">
 <script src="node_modules/trix/dist/trix-core.js"></script>
 </head>
 <style>
+[contenteditable]:focus, trix-editor {
+    outline: 0px solid transparent;
+	border:0;
+}
+
+@media print {
+	#toolbar, #stylelist {
+		display:none;
+	}
+}
+
 body {
 	margin:0;
 	background:rgb(246,246,246);
 }
 
 #toptoolbar {
+	display:none;
 	user-select: none;
     position:fixed;
     z-index:50;
@@ -95,25 +106,24 @@ body {
 #stylelist button .shortcut {float:right;}
 
 trix-editor {
-	margin-top:30px;
 	background:#fff;
 	width:100vw;
-	height:calc(100vh - 30px);
+	min-height:100vh;
 	box-sizing: border-box;
 }
 
-@media screen and (min-width: 840px) {
+@media screen and (min-width: 690px) {
 	trix-editor {
-		padding-top:100px;
+		padding-top:130px;
 		padding-bottom:100px;;
-		padding-left:calc((100vw - 780px) / 2);
-		padding-right:calc((100vw - 780px) / 2);
+		padding-left:calc((100vw - 630px) / 2);
+		padding-right:calc((100vw - 630px) / 2);
 	}
 }
 
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 690px) {
 	trix-editor {
-		padding-top:8vw;
+		padding-top:calc(8vw + 30px);
 		padding-bottom:8vw;;
 		padding-left:10vw;
 		padding-right:10vw;
@@ -127,11 +137,11 @@ trix-editor {
 	<button type="button" id="stylesbutton">Block styles</button>
 	<button type="button" class="seperator" data-trix-attribute="bullet" aria-label="Bulletlist">UL</button>
 	<button type="button" data-trix-attribute="number" aria-label="Numbered list">OL</button>
-	<button type="button" class="seperator" data-trix-attribute="bold" data-trix-key="b" title="Bold (⌘b)" style="font-weight:bold;">B</button>
-	<button type="button" data-trix-attribute="italic" data-trix-key="i" title="Italic (⌘i)" style="font-style:italic;">i</button>
+	<button type="button" class="seperator" data-trix-attribute="bold" data-trix-key="b" title="Bold (⌘B)" style="font-weight:bold;">B</button>
+	<button type="button" data-trix-attribute="italic" data-trix-key="i" title="Italic (⌘I)" style="font-style:italic;">i</button>
 	<button type="button" data-trix-attribute="smallcaps" title="Small caps" style="font-variant: small-caps;">Aa</button>
 	<button type="button" data-trix-attribute="allsmallcaps" title="All small caps" style="font-variant: all-small-caps;">Aa</button>
-	<button type="button" class="seperator" data-trix-action="x-link" data-trix-key="k" title="Link (⌘k)">Link</button>
+	<button type="button" class="seperator" data-trix-action="x-link" data-trix-key="k" title="Link (⌘K)">Link</button>
 
 <div style="display:none">
 	<!-- BIND THESE SHORTCUTS -->
@@ -153,7 +163,7 @@ trix-editor {
 
 <button type="button" class="seperator" data-trix-attribute="big_block">Big</button>
 <button type="button" data-trix-attribute="small_block">Small</button>
-<button type="button" data-trix-attribute="code" data-trix-key="c">Code <span class="shortcut">⌘c</span></button>
+<button type="button" data-trix-attribute="code">Code</button>
 </div>
 
 </div>
@@ -163,12 +173,12 @@ trix-editor {
 </body>
 <script src="main-renderer.js"></script>
 <script>
-
 trixElement = document.querySelector("trix-editor")
 trixEditor = trixElement.editor
 
 setup(document, trixElement)
-
+</script>
+<script>
 trixElement.addEventListener('trix-initialize', function() {
 	trixEditor.setSelectedRange([0, 0])
 })
@@ -217,6 +227,7 @@ Trix.config.textAttributes.allsmallcaps = {
 }
 
 document.addEventListener('trix-action-invoke', function(e) {
+	
 	if(e.actionName === "x-link") {
 		if (trixEditor.attributeIsActive("href")) {
 			trixEditor.deactivateAttribute("href")
@@ -247,8 +258,7 @@ document.addEventListener('trix-action-invoke', function(e) {
 	e.stopPropagation();
 })
 
-</script>
-<script type="text/javascript">
+toptoolbar = document.getElementById("toptoolbar")
 stylelist = document.getElementById("stylelist")
 
 stylelist.addEventListener("click", function(e) {
@@ -271,5 +281,30 @@ document.getElementById("stylesbutton").addEventListener("click", function(e) {
         stylelist.style.display = "none"
     }
 });
+
+var selectedRangeBeforePrint;
+window.matchMedia("print").addListener(function() {
+	if(trixElement.hasAttribute("contenteditable")) {
+		selectedRangeBeforePrint = trixEditor.getSelectedRange()
+		trixElement.removeAttribute("contenteditable")
+	} else {
+		trixElement.setAttribute("contenteditable", "")
+		trixEditor.setSelectedRange(selectedRangeBeforePrint)
+	}
+	
+})
+
+trixElement.addEventListener("trix-selection-change", function() {
+	selectedRange = trixEditor.getSelectedRange()
+	isCollapsed = (selectedRange[0] == selectedRange[1])
+	
+	if (isCollapsed) {
+		if(toptoolbar.style.display == "block")
+			toptoolbar.style.display = "none"
+    } else {
+        if(toptoolbar.style.display == "none" || toptoolbar.style.display == "")
+			toptoolbar.style.display = "block"
+    }
+})
 </script>
 </html>
