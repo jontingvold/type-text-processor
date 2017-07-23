@@ -13,7 +13,7 @@ Sprint 1
 
 ### Features
 [ ] Presentere filnavn i "Do you want to save 'filename'?"
-[ ] Save window position med https://www.npmjs.com/package/electron-window-state
+[x] Save window position med https://www.npmjs.com/package/electron-window-state
 [ ] Gjøre om Save as to Duplicate (on mac)
 [ ] Recover documents if crash
 [x] Print

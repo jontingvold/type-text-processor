@@ -1,37 +1,38 @@
 {
-	"name": "Type",
-	"description": "A beautiful word processor",
-	"version": "0.1.2",
-	"author": "Jon Tingvold <jon.tingvold@gmail.com>",
-	"contributors": [],
-	"private": true,
-	"main": "main.js",
-	"scripts": {
-		"start": "electron .",
-		"pack": "electron-builder --dir",
-		"dist": "electron-builder"
-	},
-	"devDependencies": {
-		"electron": "^1.6.11",
-		"electron-builder": "^19.16.0"
-	},
-	"dependencies": {
-		"glob": "^7.1.2",
-		"trix": "^0.10.2"
-	},
-	"build": {
-		"appId": "no.jontingvold.type",
-		"productName": "Type",
-		"nsis": {
-			"perMachine": true
-		},
-		"fileAssociations": [
-			{
-				"ext": "type",
-				"name": "Type",
-				"description": "Type-document",
-				"role": "editor"
-			}
-		]
-	}
+  "name": "Type",
+  "description": "A beautiful word processor",
+  "version": "0.1.2",
+  "author": "Jon Tingvold <jon.tingvold@gmail.com>",
+  "contributors": [],
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^1.6.11",
+    "electron-builder": "^19.16.0"
+  },
+  "dependencies": {
+    "electron-window-state": "^4.1.1",
+    "glob": "^7.1.2",
+    "trix": "^0.10.2"
+  },
+  "build": {
+    "appId": "no.jontingvold.type",
+    "productName": "Type",
+    "nsis": {
+      "perMachine": true
+    },
+    "fileAssociations": [
+      {
+        "ext": "type",
+        "name": "Type",
+        "description": "Type-document",
+        "role": "editor"
+      }
+    ]
+  }
 }

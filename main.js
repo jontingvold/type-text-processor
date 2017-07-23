@@ -3,6 +3,7 @@ const path = require('path')
 const glob = require('glob')
 const url = require('url')
 const ipc = require('electron').ipcMain
+const windowStateKeeper = require('electron-window-state');
 
 if (process.mas) app.setName('Type')
 
@@ -44,12 +45,19 @@ loadMainProcesses()
 exports.createWindow = (filepath) => {
     //dialog.showErrorBox("Tries to open filepath:", process.argv[2])
     
+    let mainWindowState = windowStateKeeper({
+        defaultWidth: 800,
+        defaultHeight: 1131  // A4 ratio if sceen high enough (1131=800*sqrt(2)) 
+      });
+    
     // Create the browser window.
     const win = new BrowserWindow({
         show: false, // Show when everything loaded
         //width: 800,
-        width: 1200,
-        height: 1131, // A4 ratio if sceen high enough (1131=800*sqrt(2)) 
+        'x': mainWindowState.x,
+        'y': mainWindowState.y,
+        'width': mainWindowState.width,
+        'height': mainWindowState.height,
         minWidth: 300,
         minHeight: 400,
         tabbingIdentifier: "mainGroup", // Open in tabs on macOS 10.12+ // BUG: DOES NOT WORK!
@@ -60,7 +68,8 @@ exports.createWindow = (filepath) => {
             //preload: 'renderer-process/preload.js',
         }
     })
-
+    
+    mainWindowState.manage(win)
     windows.push(win)
     filepathForWindows[win.id] = filepath
 
@@ -143,8 +152,7 @@ ipc.on('filepath-changed', (event, filepath) => {
     
     if(filepath != "") {
         app.addRecentDocument(filepath)
-    }
-    
+    }  
 })
 
 ipc.on('file-saved', () => {
@@ -176,7 +184,7 @@ app.on('open-file', (event, path) => {
 
 // macOS only
 app.on('new-window-for-tab', function () {
-    createWindow("")
+    exports.createWindow("")
 })
 
 // Quit when all windows are closed.
