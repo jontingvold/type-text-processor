@@ -97,7 +97,8 @@ const template = [
             label: 'Print',
             accelerator: 'CmdOrCtrl+p',
             click: function() {
-                console.log("Not implemented");
+                const win = BrowserWindow.getFocusedWindow()
+                win.webContents.print()
             }
         }
       ]
