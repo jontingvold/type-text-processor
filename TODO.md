@@ -7,12 +7,12 @@ Sprint 1
 
 ### Bugs
 [ ] Link does not work, because promt not implemented and some weired error.
-[ ] Close old window when opening a new one if empty.
-[x] Starts in unsaved mode, when opening file.
 [x] Edited=false når du skriver en et tegn og trykker tilbake (og cntr+z, lim inn etter endring).
 [x] Export to PDF uten å få med cursor
 
 ### Features
+[x] Close old window when opening a new one if empty.
+[x] Starts in unsaved mode, when opening file.
 [x] Presentere filnavn i "Do you want to save 'filename'?"
 [x] Save window position med https://www.npmjs.com/package/electron-window-state
 [ ] Gjøre om Save as to Duplicate (on mac) – after refactoring

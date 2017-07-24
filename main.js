@@ -21,6 +21,10 @@ exports.isFileNew = (winID) => {
     return isFileNew
 }
 
+exports.isFileUnsaved = (winID) => {
+    return unsavedWindows[winID]
+}
+
 exports.getFilepath = (winID) => {
     return filepathForWindows[winID]
 }
@@ -151,10 +155,10 @@ exports.createWindow = (filepath) => {
     })
 }
 
-ipc.on('file-changed', () => {
+ipc.on('file-changed-status-changed', (event, isChanged) => {
     const win = BrowserWindow.getFocusedWindow()
-    unsavedWindows[win.id] = true 
-    win.setDocumentEdited(true)
+    unsavedWindows[win.id] = isChanged
+    win.setDocumentEdited(isChanged)
 })
 
 ipc.on('filepath-changed', (event, filepath) => {
@@ -168,9 +172,6 @@ ipc.on('filepath-changed', (event, filepath) => {
 })
 
 ipc.on('file-saved', () => {
-    const win = BrowserWindow.getFocusedWindow()
-    unsavedWindows[win.id] = false
-    win.setDocumentEdited(false)
 })
 
 // This method will be called when Electron has finished

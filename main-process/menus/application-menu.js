@@ -31,6 +31,8 @@ const template = [
             label: 'Open...',
             accelerator: 'CmdOrCtrl+o',
             click: function() {
+                const oldWin = BrowserWindow.getFocusedWindow()
+                
                 filepaths = dialog.showOpenDialog({
                     filters: [
                         {name: 'Type documents', extensions: ['type']}
@@ -39,6 +41,13 @@ const template = [
                 })
                 
                 if (filepaths) {
+                    if(oldWin) {
+                        oldWinIsBlank = main.isFileNew(oldWin.id) && !(main.isFileUnsaved(oldWin.id))
+                        if(oldWinIsBlank) {
+                            oldWin.close()
+                        }
+                    }
+                    
                     main.createWindow(filepaths[0])
                 }
             },
