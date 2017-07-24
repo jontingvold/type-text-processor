@@ -4,6 +4,7 @@ const path = require('path')
 
 var thisDocument = null
 var trixElement = null
+var fileAtLastSave = ""
 var filepath = ""
 
 function getNameFromPath(filepath) {
@@ -44,11 +45,17 @@ function load_file() {
       
       // If success
       trixElement.value = data
+      
+      fileAtLastSave = trixElement.value
+      update_changed_status()
     });
 }
 
 function save_file() {
     data = trixElement.value
+    
+    fileAtLastSave = trixElement.value
+    update_changed_status()
     
     fs.writeFile(filepath, data, function(err) {
        if(err) {
@@ -59,10 +66,15 @@ function save_file() {
     });
 }
 
+function update_changed_status() {
+    haveChangedSinceLastSave = (fileAtLastSave != trixElement.value)        
+    ipc.send('file-changed-status-changed', haveChangedSinceLastSave)
+}
+
 setup = (doc, trixElem) => {
     thisDocument = doc
     trixElement = trixElem
     trixElement.addEventListener('trix-change', function() {
-    	ipc.send('file-changed')
+ 	    update_changed_status() 
     })
 }

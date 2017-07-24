@@ -6,15 +6,16 @@ Sprint 1
 --------
 
 ### Bugs
+[ ] Link does not work, because promt not implemented and some weired error.
 [ ] Close old window when opening a new one if empty.
-[ ] Starts in unsaved mode, when opening file.
-[ ] Edited=false når du skriver en et tegn og trykker tilbake (og cntr+z, lim inn etter endring).
+[x] Starts in unsaved mode, when opening file.
+[x] Edited=false når du skriver en et tegn og trykker tilbake (og cntr+z, lim inn etter endring).
 [x] Export to PDF uten å få med cursor
 
 ### Features
-[ ] Presentere filnavn i "Do you want to save 'filename'?"
+[x] Presentere filnavn i "Do you want to save 'filename'?"
 [x] Save window position med https://www.npmjs.com/package/electron-window-state
-[ ] Gjøre om Save as to Duplicate (on mac)
+[ ] Gjøre om Save as to Duplicate (on mac) – after refactoring
 [ ] Recover documents if crash
 [x] Print
 [ ] QuickView support, se https://aleksandrov.ws/2014/02/25/osx-quick-look-plugin-development/
