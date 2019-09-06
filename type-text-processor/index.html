@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <title>Untitled</title>
 
-<link rel="stylesheet" href="themes/minion/style.css">
+<link rel="stylesheet" href="themes/baseline.css">
+<link rel="stylesheet" href="themes/default/style.css">
 <script src="node_modules/trix/dist/trix-core.js"></script>
 </head>
 <style>
@@ -19,11 +20,6 @@
 	}
 }
 
-body {
-	margin:0;
-	background:rgb(246,246,246);
-}
-
 #toptoolbar {
 	display:none;
 	user-select: none;
@@ -33,10 +29,12 @@ body {
     top:0;
     left:0;
     width:100%;
-    background:rgb(246,246,246);
+    /*background: rgb(246,246,246);*/
+    background: rgb(255, 255, 255);
     border-top:1px rgb(235,235,235) solid;
     border-bottom:1px rgb(222,222,222) solid;
     padding:0 10vw;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.10);
 }
 
 #toptoolbar button:first-child { padding-left:0; }
@@ -53,7 +51,7 @@ body {
 	user-select: none;
     border:0;
 	background:none;
-	color:#8c8c8c;
+	color: rgb(100, 100, 100);
 	font-weight:500;
 	font:14px sans-serif;
 }
@@ -86,13 +84,14 @@ body {
 
 #stylelist {
     position:fixed;
-    z-index:49;
-    top:30px;
+    z-index:51;
+    top:31px;
     left:calc(10vw - 7px);
 	width:200px;
-    background:rgb(246,246,246);
+    background: rgb(255, 255, 255);
     border:1px #ddd solid;
-	border-radius:0 0 5px 5px;
+	/*border-radius:0 0 5px 5px;*/
+    box-shadow: 1px 3px 3px 0 rgba(0, 0, 0, 0.10);
 }
 
 #stylelist button {
@@ -104,31 +103,6 @@ body {
 }
 #stylelist button.seperator {border-top:1px rgb(235,235,235) solid;}
 #stylelist button .shortcut {float:right;}
-
-trix-editor {
-	background:#fff;
-	width:100vw;
-	min-height:100vh;
-	box-sizing: border-box;
-}
-
-@media screen and (min-width: 690px) {
-	trix-editor {
-		padding-top:130px;
-		padding-bottom:100px;;
-		padding-left:calc((100vw - 630px) / 2);
-		padding-right:calc((100vw - 630px) / 2);
-	}
-}
-
-@media screen and (max-width: 690px) {
-	trix-editor {
-		padding-top:calc(8vw + 30px);
-		padding-bottom:8vw;;
-		padding-left:10vw;
-		padding-right:10vw;
-	}
-}
 </style>
 <body>
 <div id="toolbar">
@@ -137,11 +111,11 @@ trix-editor {
 	<button type="button" id="stylesbutton">Block styles</button>
 	<button type="button" class="seperator" data-trix-attribute="bullet" aria-label="Bulletlist">UL</button>
 	<button type="button" data-trix-attribute="number" aria-label="Numbered list">OL</button>
-	<button type="button" class="seperator" data-trix-attribute="bold" data-trix-key="b" title="Bold (⌘B)" style="font-weight:bold;">B</button>
+	<button type="button" class="seperator" data-trix-attribute="strong" data-trix-key="b" title="Bold (⌘B)" style="font-weight:bold;">B</button>
 	<button type="button" data-trix-attribute="italic" data-trix-key="i" title="Italic (⌘I)" style="font-style:italic;">i</button>
 	<button type="button" data-trix-attribute="smallcaps" title="Small caps" style="font-variant: small-caps;">Aa</button>
 	<button type="button" data-trix-attribute="allsmallcaps" title="All small caps" style="font-variant: all-small-caps;">Aa</button>
-	<button type="button" class="seperator" data-trix-action="x-link" data-trix-key="k" title="Link (⌘K)">Link</button>
+	<!--<button type="button" class="seperator" data-trix-action="x-link" data-trix-key="k" title="Link (⌘K)">Link</button>-->
 
 <div style="display:none">
 	<!-- BIND THESE SHORTCUTS -->
@@ -157,9 +131,10 @@ trix-editor {
 </div>
 
 <div id="stylelist" style="display:none">
-<!--<button type="button" data-trix-attribute="default" data-trix-key="0">Body text (default) <span class="shortcut">⌘d</span></button>-->
-<button type="button" class="seperator" data-trix-attribute="headline_paragrah" data-trix-key="2">Paragrath headline <span class="shortcut">⌘2</span></button>
+<button type="button" data-trix-attribute="default" data-trix-key="0">Body text (default) <span class="shortcut">⌘d</span></button>
+<button type="button" data-trix-attribute="headline_kicker">Kicker</button>
 <button type="button" data-trix-attribute="headline_subsection" data-trix-key="1">Subsection headline <span class="shortcut">⌘1</span></button>
+<button type="button" data-trix-attribute="headline_paragrah" data-trix-key="2">Paragrath headline <span class="shortcut">⌘2</span></button>
 
 <button type="button" class="seperator" data-trix-attribute="big_block">Big</button>
 <button type="button" data-trix-attribute="small_block">Small</button>
@@ -194,19 +169,30 @@ Trix.config.blockAttributes.code;
 //delete Trix.config.blockAttributes.bullet;
 //delete Trix.config.blockAttributes.numberList;
 //delete Trix.config.blockAttributes.number;
+
 Trix.config.blockAttributes.default = {tagName: 'div', parse: false }
-Trix.config.blockAttributes.headline_paragrah = { tagName: 'h2', breakOnReturn: true, group: false, terminal: true };
-Trix.config.blockAttributes.headline_subsection = { tagName: 'h1', breakOnReturn: true, group: false, terminal: true };
+
 Trix.config.blockAttributes.headline_kicker = { tagName: 'kicker', breakOnReturn: true, group: false, terminal: true };
+Trix.config.blockAttributes.headline_subsection = { tagName: 'h1', breakOnReturn: true, group: false, terminal: true };
+Trix.config.blockAttributes.headline_paragrah = { tagName: 'h2', breakOnReturn: true, group: false, terminal: true };
 
 Trix.config.blockAttributes.big_block = { tagName: 'big', breakOnReturn: true, group: false, terminal: true };
 Trix.config.blockAttributes.small_block = { tagName: 'small', breakOnReturn: true, group: false, terminal: true };
 
-//delete Trix.config.textAttributes.bold;
+delete Trix.config.textAttributes.bold;
 //delete Trix.config.textAttributes.italic;
 //delete Trix.config.textAttributes.href;
 delete Trix.config.textAttributes.strike;
 delete Trix.config.textAttributes.frozen;
+
+Trix.config.textAttributes.strong = { 
+	tagName: 'strong',
+	inheritable: true,
+	parser: (element) => {
+  		style = window.getComputedStyle(element)
+  		return style["font-weight"] == "bold"
+	}
+}
 
 Trix.config.textAttributes.smallcaps = { 
 	tagName: 'smallcaps',

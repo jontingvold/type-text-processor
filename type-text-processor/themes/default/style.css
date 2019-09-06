@@ -1,0 +1,66 @@
+/* FONTS */
+@import "fonts/Gill Sans/gillsans.css";
+@import "fonts/Minion Pro/minionpro.css";
+
+body {
+    font-family: "Minion Pro", "Times", serif;
+    font-variant-numeric: oldstyle-nums proportional-nums;
+}
+
+kicker, a {
+    /* color: #d00; */
+    color: #000;
+}
+
+/* Sans serif */
+kicker, h1 {
+    font-family:'Gill Sans', sans-serif;
+    font-feature-settings: "kern, onum";
+}
+
+kicker, h1 {font-weight: 500;}
+
+/* Monospace */
+pre, code {
+    font-family: Courier, "Courier New", monospace;
+}
+
+/* Typography color, weight and style */
+@supports (hyphens: auto) or 
+    (-webkit-hyphens: auto) or
+    (-moz-hyphens: auto) or
+    (-ms-hyphens: auto) {
+	div {
+        text-align:justify; /* Needs lang attribute on parent element to work. */
+        hyphens: auto;
+        -webkit-hyphens: auto; /* Only Safari, not Chrome. */
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+    }
+}
+
+@media (min-width: 600px), print {
+    div {
+        text-align:justify; /* Needs lang attribute on parent element to work. */
+    }
+}
+
+kicker, h1, h2, big, small {
+    text-align: left;
+}
+
+kicker {font-size:0.85rem;}
+h1 {
+    font-size: 1.8rem;
+    margin-top: 3rem; margin-bottom:4rem;
+}
+h2 {
+    font-size:1rem;
+    font-weight: 600;
+}
+big {
+    font-size:1.1rem;
+    font-style: italic;
+}
+
+a {text-decoration: none;}

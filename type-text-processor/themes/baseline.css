@@ -1,0 +1,107 @@
+/*
+
+BASELINE (DEFAULT STYLESHEET FOR ALL STYLES)
+
+ - sets margins and background on body and container
+ - sets default style for typography
+
+*/
+
+/* MARGIN AND BACKGROUND ON BODY AND CONTAINER */
+
+@media screen {
+    body {
+    	background: rgb(235, 237, 240); 
+        /* Under 850px it is only visable in iOS/MacOS when bounces off screen. */
+    }
+
+    .container {
+    	background:#fff;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px 0px, rgba(0, 0, 0, 0.188235) 0px 4px 6px 0px;
+        margin:0 auto;
+    	box-sizing: border-box;
+        
+        width: 900px;
+        max-width: 100vw;
+        min-height: 100vh;
+    }
+}
+
+/* BODY MARGINS TO PAGE */
+@media screen and (min-width: 900px) { body {margin: 18px 0 36px 0;} } /* top, right, bottom, left */
+@media screen and (max-width: 900px) { body {margin: 0;} }
+
+/* PAGE MARGINS */
+@media screen and (min-width: 900px) { .container {padding: 125px 154px;} } 
+@media screen and (max-width: 900px) { .container {padding: 4.7rem 10.8%;} } /* 75*1.23=92.4px 92.4/850px=8.9% */
+@media screen and (max-width: 600px) { .container {padding: 10% 7%;} }
+@media print {
+    @page {
+        /* 3.08 and 3.81 cm on A4*/
+        margin: 14.7% 18.5%;
+    }
+}
+
+/* TEXT SIZE */
+@media screen {
+	body {font-size: 16px;}
+}
+@media screen and (min-width: 500px) { body {font-size: 15px;} } 
+@media screen and (max-width: 500px) { body {font-size: 15px;} }
+@media print                         { body {font-size: 9.7pt;} } /* 1pt = 1.33px; 10pt = 13px */
+
+
+
+@media print {
+    body, #edit, .container {margin: 0; padding: 0;}
+	
+    @page {
+        padding: 0;
+        
+        orphans: 2;
+        widows: 2;
+    }
+}
+
+
+.container > *:first-child {margin-top:0;}
+
+kicker strong, 
+h1 strong,
+h2 strong
+{font-weight: inherit;}
+
+/* Default style */
+
+body {
+    line-height:1.4;
+    font-kerning: normal;
+}
+
+/* Complex block elements */
+ul, ol {
+    list-style-position: outside;
+    padding-left:1.5rem;
+    margin-top:1rem;
+    margin-bottom:1rem;
+}
+
+/* Text block elements */
+/* Subsection headline */ h1 {
+    font-size: 1.5rem;
+    margin-top: 2rem; margin-bottom:1rem;
+}
+/* Paragraph headline */ h2 {
+    font-size:1rem;
+    margin-top:0rem;margin-bottom:0rem;
+}
+kicker + h1 {margin-top:0;}   
+
+kicker {display:block; font-weight:bold; font-size:0.9rem;}
+big {display:block; font-size:1.2rem;}
+small {display:block; font-size:0.8rem;color:#999;}
+
+/* Inline elements */
+smallcaps {font-variant: small-caps;}
+allsmallcaps {font-variant: all-small-caps;}
+a {color:#000;text-decoration: underline;}

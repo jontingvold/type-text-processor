@@ -1,0 +1,14 @@
+@font-face{font-family:'Gill Sans';font-weight:200;src:url("GillSans-Light.woff2"););}
+@font-face{font-family:'Gill Sans';font-weight:200;font-style:italic;src:url("GillSans-LightItalic.woff2"););}
+
+@font-face{font-family:'Gill Sans';font-weight:500;src:url("GillSans.woff2"););}
+@font-face{font-family:'Gill Sans';font-weight:500;font-style:italic;src:url("GillSans-Italic.woff2"););}
+
+@font-face{font-family:'Gill Sans';font-weight:600;src:url("GillSans-SemiBold.woff2"););}
+@font-face{font-family:'Gill Sans';font-weight:600;font-style:italic;src:url("GillSans-SemiBoldItalic.woff2"););}
+
+@font-face{font-family:'Gill Sans';font-weight:700;src:url("GillSans-Bold.woff2"););}
+@font-face{font-family:'Gill Sans';font-weight:700;font-style:italic;src:url("GillSans-BoldItalic.woff2"););}
+
+@font-face{font-family:'Gill Sans';font-weight:800;src:url("GillSans-UltraBold.woff2"););}
+
