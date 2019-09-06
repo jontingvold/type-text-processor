@@ -14,6 +14,9 @@ function getNameFromPath(filepath) {
 }
 
 ipc.on('set-filepath', function (event, new_filepath) {
+    console.log("SET FILEPATH FIREX")
+    console.log(filepath)
+    
     if(filepath != new_filepath) {
         filepath = new_filepath
         ipc.send('filepath-changed', filepath)

@@ -38,16 +38,19 @@ function getNameFromPath(filepath) {
 exports.save_as_file = () => {
     // See: https://electron.atom.io/docs/api/dialog/
     const win = BrowserWindow.getFocusedWindow()
-    filepath = dialog.showSaveDialog(win, {
+    
+    dialog.showSaveDialog(win, {
         filters: [
             {name: 'Type documents', extensions: ['type']}
         ]
+    }, filepath => {
+        if(filepath) {
+            win.webContents.send('set-filepath', filepath)
+            win.webContents.send('save')
+        }
     })
     
-    if(filepath) {
-        win.webContents.send('set-filepath', filepath)
-        win.webContents.send('save')
-    }
+
 }
 
 loadMainProcesses()
@@ -93,7 +96,7 @@ exports.createWindow = (filepath) => {
     win.once('ready-to-show', () => {
         
         if(exports.isFileNew(win.id)) {
-            win.webContents.send('set-filepath', "")
+            //win.webContents.send('set-filepath', "")
             unsavedWindows[win.id] = false
             win.setDocumentEdited(false)
         } else {
@@ -112,7 +115,9 @@ exports.createWindow = (filepath) => {
     // Emitted when the window have pressed close.
     // Or beforeunload
     win.on('close', (event) => {
+        
         if(unsavedWindows[win.id] == true) {
+            event.preventDefault()
             
             if(filepathForWindows[win.id] == "") {
                 filename = "Untitled"
@@ -120,31 +125,34 @@ exports.createWindow = (filepath) => {
                 filename = getNameFromPath(filepathForWindows[win.id])
             }
             
-            buttonClickedIndex = dialog.showMessageBox(win, {
-                "type": "question",
-                "buttons": ["Save", "Cancel", "Don't save"],
-                "defaultId": 0,
-                "cancelId": 1,
-                "message": "Do you want to save '"+filename+"'?",
-                "detail": "Your changes will be lost if you don't save them."
-            })
-            
-            if(buttonClickedIndex == 0) {
-                // Save
-                event.preventDefault()
-                
-                if(exports.isFileNew(win.id)) {
-                    exports.save_as_file()
-                } else {
-                    win.webContents.send('save')
-                }
-            } else if (buttonClickedIndex == 1) {
-                // Cancel
-                event.preventDefault()
-            } else if (buttonClickedIndex == 2){
-                // Don't save
-                // Do not do anything
+            messageBoxOption = {
+               "type": "question",
+               "buttons": ["Save", "Cancel", "Don't save"],
+               "defaultId": 0,
+               "cancelId": 1,
+               "message": "Do you want to save '"+filename+"'?",
+               "detail": "Your changes will be lost if you don't save them."
             }
+            
+            dialog.showMessageBox(win, messageBoxOption, buttonClickedIndex => {
+               // Save
+               if(buttonClickedIndex == 0) {
+                   if(exports.isFileNew(win.id)) {
+                       exports.save_as_file()
+                   } else {
+                       win.webContents.send('save')
+                   }
+               
+               // Cancel
+               } else if (buttonClickedIndex == 1) {
+                   // Do not do anything
+                
+               // Don't save
+               } else if (buttonClickedIndex == 2){
+                   win.destroy()
+                   // Do not do anything
+               }
+           })
         }
     })
 

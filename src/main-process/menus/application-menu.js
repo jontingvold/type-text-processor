@@ -33,23 +33,24 @@ const template = [
             click: function() {
                 const oldWin = BrowserWindow.getFocusedWindow()
                 
-                filepaths = dialog.showOpenDialog({
+                dialog.showOpenDialog({
                     filters: [
                         {name: 'Type documents', extensions: ['type']}
                     ],
                     properties: ['openFile']
-                })
-                
-                if (filepaths) {
-                    if(oldWin) {
-                        oldWinIsBlank = main.isFileNew(oldWin.id) && !(main.isFileUnsaved(oldWin.id))
-                        if(oldWinIsBlank) {
-                            oldWin.close()
+                }, (filepaths) => {
+                    if (filepaths) {
+                        
+                        if(oldWin) {
+                            oldWinIsBlank = main.isFileNew(oldWin.id) && !(main.isFileUnsaved(oldWin.id))
+                            if(oldWinIsBlank) {
+                                oldWin.close()
+                            }
                         }
-                    }
                     
-                    main.createWindow(filepaths[0])
-                }
+                        main.createWindow(filepaths[0])
+                    }
+                });
             },
         }, {
             type: 'separator'
@@ -146,8 +147,8 @@ const template = [
     role: 'help',
     submenu: [
       {
-        label: 'Learn More',
-        click () { require('electron').shell.openExternal('https://electron.atom.io') }
+        label: 'Type Website',
+        click () { require('electron').shell.openExternal('https://github.com/jontingvold/type-text-processor') }
       }
     ]
   }

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Untitled</title>
+
+<script src="main-renderer.js"></script>
+
+<link rel="stylesheet" href="../node_modules/trix/dist/trix.css">
+<script src="../node_modules/trix/dist/trix-core.js"></script>
+
+<link rel="stylesheet" href="editor/toolbar.css">
+
+<link rel="stylesheet" href="themes/baseline.css">
+<link rel="stylesheet" href="themes/default/style.css">
+
+</head>
+<style>
+[contenteditable]:focus, trix-editor {
+    outline: 0px solid transparent;
+	border:0;
+}
+
+@media print {
+	#toolbar, #stylelist {
+		display:none;
+	}
+}
+</style>
+<body>
+<div id="toolbar">
+
+    <div id="toptoolbar">
+    	<button type="button" id="stylesbutton">Block styles</button>
+    	<button type="button" class="seperator" data-trix-attribute="bullet" aria-label="Bulletlist">UL</button>
+    	<button type="button" data-trix-attribute="number" aria-label="Numbered list">OL</button>
+    	<button type="button" class="seperator" data-trix-attribute="strong" data-trix-key="b" title="Bold (⌘B)" style="font-weight:bold;">B</button>
+    	<button type="button" data-trix-attribute="italic" data-trix-key="i" title="Italic (⌘I)" style="font-style:italic;">i</button>
+    	<button type="button" data-trix-attribute="smallcaps" title="Small caps" style="font-variant: small-caps;">Aa</button>
+    	<button type="button" data-trix-attribute="allsmallcaps" title="All small caps" style="font-variant: all-small-caps;">Aa</button>
+    	<!--<button type="button" class="seperator" data-trix-action="x-link" data-trix-key="k" title="Link (⌘K)">Link</button>-->
+
+    <div style="display:none">
+    	<!-- BIND THESE SHORTCUTS -->
+    	<button data-trix-action="undo" data-trix-key="z"></button>
+    	<button data-trix-action="redo" data-trix-key="shift+z"></button>
+    	<button data-trix-key="5"></button>
+    	<button data-trix-key="6"></button>
+    	<button data-trix-key="7"></button>
+    	<button data-trix-key="8"></button>
+    	<button data-trix-key="9"></button>
+    	<button data-trix-key="0"></button>
+    </div>
+    </div>
+
+    <div id="stylelist" style="display:none">
+        <button type="button" data-trix-attribute="default" data-trix-key="0">Body text (default) <span class="shortcut">⌘d</span></button>
+        <button type="button" data-trix-attribute="headline_kicker">Kicker</button>
+        <button type="button" data-trix-attribute="headline_subsection" data-trix-key="1">Subsection headline <span class="shortcut">⌘1</span></button>
+        <button type="button" data-trix-attribute="headline_paragrah" data-trix-key="2">Paragrath headline <span class="shortcut">⌘2</span></button>
+
+        <button type="button" class="seperator" data-trix-attribute="big_block">Big</button>
+        <button type="button" data-trix-attribute="small_block">Small</button>
+        <button type="button" data-trix-attribute="code">Code</button>
+    </div>
+
+</div>
+
+<trix-editor toolbar="toolbar" class="container"></trix-editor>
+
+</body>
+
+<script>
+var trixElement = document.querySelector("trix-editor")
+setup(document, trixElement)
+</script>
+
+<script src="editor/trix-config.js"></script>
+<script src="editor/toolbar.js"></script>
+
+<script>
+var trixEditor = trixElement.editor
+trixEditor.setSelectedRange([0, 0])
+</script>
+    
+</html>
