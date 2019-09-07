@@ -1,7 +1,7 @@
 node_modules
 out
 npm-debug.log
-dist/
+dist
 
 .DS_Store
 .env
@@ -21,6 +21,7 @@ dist/
 *.vcxproj.user
 *.xcodeproj
 /.idea/
+/dist/
 /external_binaries/
 /out/
 /vendor/.gclient
