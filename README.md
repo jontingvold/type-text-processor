@@ -12,13 +12,20 @@ The aim was to ...
 
 - Electron
 - Not usable, not secure
-- 
+- Print support
 
 ![screenshot](screenshot.png)
 
 Getting started
 ---
 
+	# Clone project
+	git clone git@github.com:jontingvold/type-text-processor.git
+	
+	# Install yarn
+	# https://yarnpkg.com/en/docs/install
+	brew install yarn # Mac/brew
+	
 	# Install dependencies
 	yarn install
 	
@@ -28,6 +35,10 @@ Getting started
 	# Package
 	yarn dist
 	
-	# Upgrade dependencies (will probabily break things)
+	# Upgrade dependencies (will probably break things)
 	yarn upgrade
 
+Questions?
+----------
+
+Feel free to [send me an email](http://www.jontingvold.no/) if you have questions about the project.

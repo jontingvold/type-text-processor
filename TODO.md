@@ -2,34 +2,43 @@
 TODO
 ====
 
+Sprint 0
+--------
+
+Goal: Research WYSIWYG-editors and setup clean Electron project
+
 Sprint 1
 --------
 
+Goal: Basic file handling (open, save) and simple html editing out of the box.
+
+### Features
+
+- [x] Close old window when opening a new one if empty.
+- [x] Starts in unsaved mode, when opening file.
+- [x] Presentere filnavn i "Do you want to save 'filename'?"
+- [x] Save window position med https://www.npmjs.com/package/electron-window-state
+
+Sprint 2
+--------
+
+Goal: Nice and pretty. Basic custom text formatting with custom elements like kicker and small-caps.
+
 ### Bugs
-- [ ] Link does not work, because promt not implemented and some weired error.
+
 - [x] Edited=false når du skriver en et tegn og trykker tilbake (og cntr+z, lim inn etter endring). 
 - [x] Export to PDF uten å få med cursor
 
+### Features/design
 
-### Features
-- [x] Close old window when opening a new one if empty.
-- [x]  Starts in unsaved mode, when opening file.
-- [x] Presentere filnavn i "Do you want to save 'filename'?"
-- [x] Save window position med https://www.npmjs.com/package/electron-window-state
-- [ ] Gjøre om Save as to Duplicate (on mac) – after refactoring
-- [ ] Recover documents if crash
 - [x] Print
-- [ ] QuickView support, se https://aleksandrov.ws/2014/02/25/osx-quick-look-plugin-development/
+- [x] Dokumentikon, gjerne med kul tekst som "Here are for the crazy ones"
+- [x] Themes med kicker, h1-h2, big og small, small-caps and all-small-caps
+- [x] Opened recently list
+
+### Research
+
 - [x] Sjekk om Windows åpner open og save i samme mappe og ikke "Mine Dokumenter" hver gang.
-
-### Refactoring
-- [ ] Clean code
-- [ ] Tests for å åpne og lukke filer, og skadelig filer.
-
-### Design
-- [ ] Dokumentikon, gjerne med kul tekst som "Here are for the crazy ones"
-- [ ] Themes med h1-h4, big og small (og fungerende med The Economist)
-- [ ] Dokumenter vi kan bruke til promotering
 
 
 Backlog
@@ -46,13 +55,20 @@ Backlog
 
 ### Features
 - [ ] Få tabs til å fungere.
-- [ ] Opened recently list
-- [ ] Quit and open where you left off. IKKE SLIK PÅ MAC LENGER. 
+- [ ] Gjøre om Save as to Duplicate (on mac) – after refactoring
+- [ ] Recover documents if crash
+- [ ] QuickView support, se https://aleksandrov.ws/2014/02/25/osx-quick-look-plugin-development/
 
 ### Refactoring
+- [ ] Clean code
+- [ ] Tests for å åpne og lukke filer, og skadelig filer.
 - [ ] Typescript (TS)
-
-### Design
 
 ### Trix
 - [ ] Auto-linking with https://gist.github.com/javan/7b0c99f43e67080c2380e8d30707f773 
+
+Someday maybe
+-------------
+
+- [ ] 
+
