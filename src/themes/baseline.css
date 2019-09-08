@@ -43,12 +43,9 @@ BASELINE (DEFAULT STYLESHEET FOR ALL STYLES)
 }
 
 /* TEXT SIZE */
-@media screen {
-	body {font-size: 16px;}
-}
-@media screen and (min-width: 500px) { body {font-size: 15px;} } 
-@media screen and (max-width: 500px) { body {font-size: 15px;} }
-@media print                         { body {font-size: 9.7pt;} } /* 1pt = 1.33px; 10pt = 13px */
+@media screen and (min-width: 500px) { html {font-size: 15px;} } 
+@media screen and (max-width: 500px) { html {font-size: 15px;} }
+@media print                         { html {font-size: 9.5pt;} } /* 1pt = 1.33px; 10pt = 13px */
 
 
 
@@ -88,8 +85,8 @@ ul, ol {
 
 /* Text block elements */
 /* Subsection headline */ h1 {
-    font-size: 1.5rem;
-    margin-top: 2rem; margin-bottom:1rem;
+    font-size: 1.9rem;
+    margin-top: 3rem; margin-bottom:4rem;
 }
 /* Paragraph headline */ h2 {
     font-size:1rem;
@@ -97,9 +94,9 @@ ul, ol {
 }
 kicker + h1 {margin-top:0;}   
 
-kicker {display:block; font-weight:bold; font-size:0.9rem;}
+kicker {display:block; font-weight:bold; font-size:0.85rem;}
 big {display:block; font-size:1.2rem;}
-small {display:block; font-size:0.8rem;color:#999;}
+small {display:block; font-size:0.85rem;color:#999;}
 
 /* Inline elements */
 smallcaps {font-variant: small-caps;}
