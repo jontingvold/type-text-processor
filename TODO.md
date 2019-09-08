@@ -22,7 +22,7 @@ Goal: Basic file handling (open, save) and simple html editing out of the box.
 Sprint 2
 --------
 
-Goal: Nice and pretty. Basic custom text formatting with custom elements like kicker and small-caps.
+Goal: Create a pretty theme. Remove most text formatting options. Basic custom text formatting with custom elements like kicker and small-caps.
 
 ### Bugs
 
@@ -69,6 +69,4 @@ Backlog
 
 Someday maybe
 -------------
-
-- [ ] 
 
