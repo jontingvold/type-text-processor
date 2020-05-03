@@ -134,5 +134,4 @@ Feel free to [send me an email](http://www.jontingvold.no/) if you have question
 License
 -------
 
-[MIT](LICENSE)
-
+[MIT](LICENSE.md)
