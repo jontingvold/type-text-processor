@@ -2,7 +2,7 @@ trixElement = document.querySelector("trix-editor")
 trixEditor = trixElement.editor
 
 trixElement.addEventListener('trix-file-accept', function(e) {
-	e.preventDefault()
+  e.preventDefault()
 })
 
 delete Trix.config.blockAttributes.quote;
@@ -13,7 +13,7 @@ Trix.config.blockAttributes.code;
 //delete Trix.config.blockAttributes.numberList;
 //delete Trix.config.blockAttributes.number;
 
-Trix.config.blockAttributes.default = {tagName: 'div', parse: false }
+Trix.config.blockAttributes.default = {tagName: 'div', parse: false };
 
 Trix.config.blockAttributes.headline_kicker = { tagName: 'kicker', breakOnReturn: true, group: false, terminal: true };
 Trix.config.blockAttributes.headline_subsection = { tagName: 'h1', breakOnReturn: true, group: false, terminal: true };
@@ -32,8 +32,8 @@ Trix.config.textAttributes.strong = {
 	tagName: 'strong',
 	inheritable: true,
 	parser: (element) => {
-  		style = window.getComputedStyle(element)
-  		return style["font-weight"] == "bold"
+    style = window.getComputedStyle(element);
+    return style["font-weight"] == "bold";
 	}
 }
 
@@ -41,8 +41,8 @@ Trix.config.textAttributes.smallcaps = {
 	tagName: 'smallcaps',
 	inheritable: true,
 	parser: (element) => {
-  		style = window.getComputedStyle(element)
-  		return style["font-variant"] == "small-caps"
+    style = window.getComputedStyle(element);
+    return style["font-variant"] == "small-caps";
 	}
 }
 
@@ -50,42 +50,41 @@ Trix.config.textAttributes.allsmallcaps = {
 	tagName: 'allsmallcaps', 
 	inheritable: true, 
 	parser: (element) => {
-  		style = window.getComputedStyle(element)
-  		return style["font-variant"] == "all-small-caps"
+    style = window.getComputedStyle(element);
+    return style["font-variant"] == "all-small-caps";
 	}
 }
 
 document.addEventListener('trix-action-invoke', function(e) {
-	
 	if(e.actionName === "x-link") {
 		if (trixEditor.attributeIsActive("href")) {
-			trixEditor.deactivateAttribute("href")
+			trixEditor.deactivateAttribute("href");
 		} else {
 			// Returns null if user clicked Cancel
 			selection = trixEditor.getSelectedRange()
 		
-			var url = prompt("Write your url:", "");
+			let url = prompt("Write your url:", "");
 			
-			//If user did not press cancel or URL is blank
+			// If user did not press cancel or URL is blank
 			if (!(url == null || url == "")) {
 				console.log("Activate")
 				
 				// If no protocoll, add http://
 				if (url.indexOf(":") == -1) {
-					url = "http://" + url
+					url = "http://" + url;
 				}
 				
-			    trixEditor.activateAttribute("href", url)
+        trixEditor.activateAttribute("href", url);
 			}
-			trixEditor.setSelectedRange([selection[1], selection[1]])
-			trixEditor.insertString(" ")
-			trixEditor.undoManager.undo()
-			trixEditor.setSelectedRange(selection)
+			trixEditor.setSelectedRange([selection[1], selection[1]]);
+			trixEditor.insertString(" ");
+			trixEditor.undoManager.undo();
+			trixEditor.setSelectedRange(selection);
 		}
 	}
 	
 	e.stopPropagation();
-})
+});
 
 trixElement.addEventListener("trix-selection-change", function() {
 	selectedRange = trixEditor.getSelectedRange()
