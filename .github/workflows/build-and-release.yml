@@ -39,7 +39,7 @@ jobs:
     env:
       GIT_NAME: "Github Action: ${{github.action}}"
       GIT_EMAIL: no-reply@karsten-moholt.no
-      TAG: ${{steps.check-if-version-updated.outputs.NEW_VERSION}}
+      TAG: ${{needs.check-if-version-updated.outputs.NEW_VERSION}}
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v2
@@ -53,7 +53,7 @@ jobs:
   
   release:
     needs: tag-commit
-    if: ${{needs.tag-commit-if-version-updated.outputs.NEW_VERSION}}
+    if: ${{needs.check-if-version-updated.outputs.NEW_VERSION}}
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -78,4 +78,4 @@ jobs:
 
           # If the commit is tagged with a version (e.g. "v1.0.0"),
           # release the app after building
-          release: ${{needs.tag-commit-if-version-updated.outputs.NEW_VERSION}}
+          release: ${{needs.check-if-version-updated.outputs.NEW_VERSION}}
