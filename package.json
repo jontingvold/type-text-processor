@@ -36,5 +36,11 @@
         "role": "editor"
       }
     ]
-  }
+  },
+  "publish": [
+    {
+      "provider": "github",
+      "releaseType": "release"
+    }
+  ]
 }
