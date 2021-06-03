@@ -6,25 +6,23 @@ on:
     branches: [ master ]
 
 jobs:
-  delete-draft-release:
-      name: Delete draft releases
-      # electron-build often returns "socket hang up" error if it already been 
-      # running and tries to override already existing files in the Google (draft) release
+  delete-draft-releases:
+      name: Delete draft releases (necessary hack!)
 
       runs-on: ubuntu-latest
       steps:
-        - name: Delete draft releases
+        - name: Delete draft releases (needed to fix electron-build's "socket hang up" bug when overriding already existing files in a Github (draft) release)
           uses: hugo19941994/delete-draft-releases@v0.1.0
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   release:
+    needs: delete-draft-releases
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        # os: [ubuntu-latest]
         os: [ubuntu-latest, windows-latest, macos-latest]
-      max-parallel: 1
+      # max-parallel: 1
 
     steps:
       - name: Check out Git repository
