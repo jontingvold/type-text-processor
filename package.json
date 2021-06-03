@@ -9,7 +9,8 @@
   "scripts": {
     "start": "electron .",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "electron-builder",
+    "release": "electron-builder -mwl --publish always"
   },
   "devDependencies": {
     "electron": "^13.1.0",
@@ -25,6 +26,7 @@
   "build": {
     "appId": "no.jontingvold.type",
     "productName": "Type",
+    "copyright": "Copyright © 2017 ${author}",
     "nsis": {
       "perMachine": true
     },
@@ -35,6 +37,21 @@
         "description": "Type-document",
         "role": "editor"
       }
-    ]
+    ],
+    "dmg": {
+      "sign": false
+    },
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": {
+        "target": "default",
+        "arch": [
+          "universal"
+        ]
+      }
+    },
+    "appImage": {
+      "category": "Office"
+    }
   }
 }
