@@ -31,18 +31,13 @@ jobs:
               echo "::set-output name=NEW_VERSION::"
           fi
 
-      - name: Print version number
-        env:
-          TAG: v${{steps.check-if-version-updated.outputs.NEW_VERSION}}
-        run: | 
-          echo "NEW_VERSION=v${{steps.check-if-version-updated.outputs.NEW_VERSION}}"
-          echo "TAG=$TAG"
-
       - name: Tag commit with version
         if: ${{steps.check-if-version-updated.outputs.NEW_VERSION}}
         env:
-          TAG: v${{steps.check-if-version-updated.outputs.NEW_VERSION}}
+          TAG: ${{steps.check-if-version-updated.outputs.NEW_VERSION}}
         run: | 
+          git config --global user.email "no-reply@karsten-moholt.no"
+          git config --global user.name "Github Action: ${{github.action}}"
           git tag -a ${TAG} -m ${TAG}
           git push --follow-tags
   
