@@ -22,10 +22,9 @@ jobs:
         id: step2
         run: | 
           # In case only a shallow clone was done
-          git fetch --tags
+          # git fetch --tags
           
           VERSION=$(cat 'package.json' | jq -r '.version')
-          VERSION=0.1.8
           
           if [[ ! $(git tag | grep "${VERSION}") ]]; then
               echo "New version: v${VERSION}"
@@ -64,7 +63,8 @@ jobs:
 
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
+        os: [ubuntu-latest]
+        # os: [macos-latest, ubuntu-latest, windows-latest]
 
     steps:
       - name: Check out Git repository
@@ -84,4 +84,4 @@ jobs:
 
           # If the commit is tagged with a version (e.g. "v1.0.0"),
           # release the app after building
-          release: ${{ VERSION }}
+          release: $VERSION
