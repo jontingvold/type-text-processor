@@ -18,6 +18,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12
+      
+      - name: Install all dependencies
+        run: |
+          npm install
 
       - name: Build and release
         env:
