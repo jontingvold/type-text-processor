@@ -25,6 +25,7 @@ jobs:
           # git fetch --tags
           
           VERSION=$(cat 'package.json' | jq -r '.version')
+          VerSION=0.1.10
           
           if [[ ! $(git tag | grep "${VERSION}") ]]; then
               echo "New version: v${VERSION}"
@@ -84,7 +85,7 @@ jobs:
 
           # If the commit is tagged with a version (e.g. "v1.0.0"),
           # release the app after building
-          release: v0.1.8
+          release: $VERSION
 
           # [choices: "onTag", "onTagOrDraft", "always", "never"]
           args: "--publish always"
