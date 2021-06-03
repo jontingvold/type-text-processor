@@ -38,9 +38,6 @@
         "role": "editor"
       }
     ],
-    "dmg": {
-      "sign": false
-    },
     "mac": {
       "category": "public.app-category.productivity",
       "target": {
@@ -50,7 +47,7 @@
         ]
       }
     },
-    "appImage": {
+    "linux": {
       "category": "Office"
     }
   }
