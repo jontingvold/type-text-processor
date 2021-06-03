@@ -25,7 +25,7 @@ jobs:
           git fetch --tags
           
           VERSION=$(cat 'package.json' | jq -r '.version')
-          VERSION=0.1.7
+          VERSION=0.1.8
           
           if [[ ! $(git tag | grep "${VERSION}") ]]; then
               echo "New version: v${VERSION}"
@@ -59,6 +59,8 @@ jobs:
     needs: tag-commit
     if: ${{needs.check-if-version-updated.outputs.NEW_VERSION}}
     runs-on: ${{ matrix.os }}
+    env:
+      VERSION: ${{needs.check-if-version-updated.outputs.NEW_VERSION}}
 
     strategy:
       matrix:
@@ -82,4 +84,4 @@ jobs:
 
           # If the commit is tagged with a version (e.g. "v1.0.0"),
           # release the app after building
-          release: ${{needs.check-if-version-updated.outputs.NEW_VERSION}}
+          release: ${{ VERSION }}
