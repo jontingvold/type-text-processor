@@ -33,17 +33,12 @@ jobs:
         with:
           node-version: 12
 
-      - name: Install snapcraft (Linux)
-        if: ${{ matrix.os == 'ubuntu-latest' }}
-        run: |
-          sudo snap install snapcraft --classic  
-        
-      - name: Install all dependencies
-        run: |
-          npm install
-
-      - name: Build and publish
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          npm run release
+      - name: Build/release Electron app
+        uses: samuelmeuli/action-electron-builder@v1
+        with:
+          # GitHub token, automatically provided to the action
+          # (No need to define this secret in the repo settings)
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          release: true
+          # [choices: "onTag", "onTagOrDraft", "always", "never"]
+          args: "--publish always"
