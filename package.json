@@ -49,6 +49,9 @@
     },
     "linux": {
       "category": "Office"
+    },
+    "snap": {
+      "publish": "github"
     }
   }
 }
