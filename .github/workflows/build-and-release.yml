@@ -1,4 +1,4 @@
-name: Tag version, build and release
+name: Create Github Release (Draft)
 
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
@@ -7,22 +7,24 @@ on:
 
 jobs:
   delete-draft-releases:
-      name: Delete draft releases (necessary hack!)
+    name: Delete draft releases (necessary hack!)
 
-      runs-on: ubuntu-latest
-      steps:
-        - name: Delete draft releases (needed to fix electron-build's "socket hang up" bug when overriding already existing files in a Github (draft) release)
-          uses: hugo19941994/delete-draft-releases@v0.1.0
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete draft releases (needed to fix electron-build's "socket hang up" bug when overriding already existing files in a Github (draft) release)
+        uses: hugo19941994/delete-draft-releases@v0.1.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
   release:
+    name: Create new Github Release (Draft)
     needs: delete-draft-releases
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-      # max-parallel: 1
+        # max-parallel: 1
 
     steps:
       - name: Check out Git repository
@@ -35,10 +37,9 @@ jobs:
 
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
+        # https://github.com/marketplace/actions/electron-builder-action
         with:
           # GitHub token, automatically provided to the action
           # (No need to define this secret in the repo settings)
           github_token: ${{ secrets.GITHUB_TOKEN }}
           release: true
-          # [choices: "onTag", "onTagOrDraft", "always", "never"]
-          args: "--publish always"
