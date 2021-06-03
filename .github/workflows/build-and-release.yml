@@ -25,7 +25,7 @@ jobs:
           node-version: 12
 
       - name: Install snapcraft (Linux)
-        if: ${{ matrix.os == ubuntu-latest }}
+        if: ${{ matrix.os == 'ubuntu-latest' }}
         run: |
           sudo snap install snapcraft --classic  
         
