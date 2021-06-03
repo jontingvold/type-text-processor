@@ -10,7 +10,7 @@
     "start": "electron .",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
-    "release": "electron-builder -mwl --publish always"
+    "release": "electron-builder --publish always"
   },
   "devDependencies": {
     "electron": "^13.1.0",
