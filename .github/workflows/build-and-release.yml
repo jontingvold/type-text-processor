@@ -82,8 +82,6 @@ jobs:
           # (No need to define this secret in the repo settings)
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
-          publish: always
-
           # If the commit is tagged with a version (e.g. "v1.0.0"),
           # release the app after building
-          release: $VERSION
+          release: v0.1.8
