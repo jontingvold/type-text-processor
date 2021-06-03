@@ -8,7 +8,7 @@ on:
     branches: [ master ]
 
 jobs:
-  tag-npm-release:
+  tag-commit-if-version-updated:
       name: Tag commit if new version number in package.json
       runs-on: ubuntu-latest
 
@@ -17,6 +17,7 @@ jobs:
         - uses: neverendingqs/gh-action-tag-on-npm-version@master
   
   release:
+    needs: tag-commit-if-version-updated
     runs-on: ${{ matrix.os }}
 
     strategy:
