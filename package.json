@@ -12,15 +12,15 @@
     "dist": "electron-builder"
   },
   "devDependencies": {
-    "electron": "^7.2.4",
-    "electron-builder": "^21.2.0"
+    "electron": "^13.1.0",
+    "electron-builder": "22.10.4"
   },
   "dependencies": {
     "electron-app": "^1.0.0",
     "electron-window-state": "^5.0.3",
-    "glob": "^7.1.4",
-    "trix": "^0.10.2",
-    "update-electron-app": "^1.5.0"
+    "glob": "^7.1.7",
+    "trix": "^1.3.1",
+    "update-electron-app": "^2.0.1"
   },
   "build": {
     "appId": "no.jontingvold.type",
