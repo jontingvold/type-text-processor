@@ -25,23 +25,23 @@ jobs:
           VERSION=0.1.5
           if [[ ! $(git tag | grep "${VERSION}") ]]; then
               echo "New version: v${VERSION}"
-              echo "::set-output name=version::v${VERSION}"
+              echo "::set-output name=NEW_VERSION::v${VERSION}"
           else
               echo "No new version: v${VERSION}"
-              echo "::set-output name=version::"
+              echo "::set-output name=NEW_VERSION::"
           fi
 
       - name: Print version number
         env:
-          TAG: v${{steps.check-if-version-updated.outputs.test}}
+          TAG: v${{steps.check-if-version-updated.outputs.NEW_VERSION}}
         run: | 
-          echo "NEW_VERSION=${{steps.check-if-version-updated.outputs.test}}"
+          echo "NEW_VERSION=v${{steps.check-if-version-updated.outputs.NEW_VERSION}}"
           echo "TAG=$TAG"
 
       - name: Tag commit with version
-        if: ${{steps.check-if-version-updated.outputs.test}}
+        if: ${{steps.check-if-version-updated.outputs.NEW_VERSION}}
         env:
-          TAG: v${{steps.check-if-version-updated.outputs.test}}
+          TAG: v${{steps.check-if-version-updated.outputs.NEW_VERSION}}
         run: | 
           git tag -a ${TAG} -m ${TAG}
           git push --follow-tags
