@@ -11,9 +11,6 @@ jobs:
   tag-commit-if-version-updated:
     name: Tag commit if new version number in package.json
     runs-on: ubuntu-latest
-    env:
-      ROOT_PATH: /
-
     outputs:
       NEW_VERSION: ${{ steps.check-if-version-updated.outputs.test }}
 
@@ -24,7 +21,7 @@ jobs:
       - name: Check if version updated
         id: check-if-version-updated
         run: | 
-          TAG=$(cat '${{ROOT_PATH}}package.json' | jq -r '.version')
+          TAG=$(cat 'package.json' | jq -r '.version')
           TAG=0.1.5
           if [[ ! $(git tag | grep "${TAG}") ]]; then
               echo "::set-output name=version::v${TAG}"
