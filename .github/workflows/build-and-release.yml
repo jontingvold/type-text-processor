@@ -36,7 +36,7 @@ jobs:
           TAG: v${{steps.check-if-version-updated.outputs.test}}
         run: | 
           echo "NEW_VERSION=${{steps.check-if-version-updated.outputs.test}}"
-          echo "TAG=${{TAG}}"
+          echo "TAG=$TAG"
 
       - name: Tag commit with version
         if: ${{steps.check-if-version-updated.outputs.test}}
