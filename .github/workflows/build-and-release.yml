@@ -85,3 +85,6 @@ jobs:
           # If the commit is tagged with a version (e.g. "v1.0.0"),
           # release the app after building
           release: v0.1.8
+
+          # [choices: "onTag", "onTagOrDraft", "always", "never"]
+          args: "--publish always"
