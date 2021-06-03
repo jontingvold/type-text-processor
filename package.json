@@ -1,7 +1,7 @@
 {
   "name": "Type",
   "description": "A beautiful word processor",
-  "version": "0.1.4",
+  "version": "0.1.2",
   "author": "Jon Tingvold <jon.tingvold@gmail.com>",
   "contributors": [],
   "private": true,
