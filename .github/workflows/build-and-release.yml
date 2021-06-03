@@ -33,7 +33,7 @@ jobs:
         run: |
           npm install
 
-      - name: Build and release
+      - name: Build and publish
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
